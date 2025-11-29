@@ -15,7 +15,7 @@ export default function FAQPage() {
   const [copied, setCopied] = useState(false)
 
   const handleCopyBitcoinAddress = () => {
-    const bitcoinAddress = "bc1qfzltquks5v7g86995w7jfjhed9wfk376xvu0sl"
+    const bitcoinAddress = "bc1qcew78c5skwm6kh7rlrnphsr4qkdj4fzfs3g33n"
 
     navigator.clipboard.writeText(bitcoinAddress).then(() => {
       setCopied(true)
@@ -153,7 +153,7 @@ export default function FAQPage() {
               </p>
             )}
             <p className="text-center text-sm text-gray-400 mt-4">
-              Deposit Address: <span className="text-yellow-400 font-mono text-xs">bc1qfzltquks5v7g86995w7jfjhed9wfk376xvu0sl</span>
+              Deposit Address: <span className="text-yellow-400 font-mono text-xs">bc1qcew78c5skwm6kh7rlrnphsr4qkdj4fzfs3g33n</span>
             </p>
           </div>
         </div>
