@@ -128,7 +128,7 @@ export default function FAQPage() {
             </div>
           </div>
         </div>
-
+{/*  */}
         {/* Bitcoin Address Copy Section */}
         <div className="mb-20 mx-auto max-w-2xl">
           <div className="group relative bg-gray-900 rounded-3xl p-8 shadow-xl border border-gray-700 hover:shadow-2xl transition-all duration-300">
