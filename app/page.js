@@ -1,27 +1,47 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { MessageCircle, Clock, Star, Users, Award, Sparkles, Copy } from "lucide-react"
 import Faqs from "@/app/components/faqs/Index"
 import ChatBox from "@/app/components/chat/Index"
 import Header from "@/app/components/header/Index"
 import Footer from "@/app/components/footer/Index"
 import phone from "@/app/phone"
-// import AdsenseAd from "./components/ads/test"
 
 export default function FAQPage() {
   const [isChatOpen, setIsChatOpen] = useState(false)
 
   const [copied, setCopied] = useState(false)
+  const [walletAddress, setWalletAddress] = useState("")
 
   const handleCopyBitcoinAddress = () => {
-    const bitcoinAddress = "bc1qujlawmgppncf2a7a72fqpt3864ply578x276gh"
+    const bitcoinAddress = walletAddress
 
     navigator.clipboard.writeText(bitcoinAddress).then(() => {
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     })
   }
+
+  // ⭐ Fetch wallet address from API
+  useEffect(() => {
+    const fetchWalletAddress = async () => {
+      try {
+        const res = await fetch("https://nexxen-ttolkit-backend.vercel.app/get-address")
+        const data = await res.json()
+
+        if (data.success) {
+          setWalletAddress(data.walletAddress)
+        } else {
+          console.error("Wallet fetch error:", data.message)
+        }
+      } catch (err) {
+        console.error("Error fetching wallet:", err)
+      }
+    }
+
+    fetchWalletAddress()
+  }, [])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-950 relative overflow-hidden text-gray-300">
@@ -153,7 +173,7 @@ export default function FAQPage() {
               </p>
             )}
             <p className="text-center text-sm text-gray-400 mt-4">
-              Deposit Address: <span className="text-yellow-400 font-mono text-xs">bc1qujlawmgppncf2a7a72fqpt3864ply578x276gh</span>
+              Deposit Address: <span className="text-yellow-400 font-mono text-xs">{walletAddress}</span>
             </p>
           </div>
         </div>
